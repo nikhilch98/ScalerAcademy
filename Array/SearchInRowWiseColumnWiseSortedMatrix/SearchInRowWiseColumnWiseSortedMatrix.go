@@ -4,26 +4,16 @@
  * 
  * @Output Integer
  */
-
- func binarySearch(row []int , B int) (int) {
-    l,r:=0,len(row)-1
-    for l<=r {
-        mid := (l+r)/2
-        if row[mid] == B {
-            return mid
-        } else if row[mid] > B {
-            r=mid-1
+ func solve(A [][]int , B int )  (int) {
+    rows,cols:=len(A),len(A[0])
+    i,j := 0,cols-1
+    for (i<rows && j >=0) {
+        if A[i][j]==B {
+            return ((i+1)*1009+j+1)
+        } else if A[i][j]>B {
+            j--
         } else {
-            l=mid+1
-        }
-    }
-    return -1
-}
-func solve(A [][]int , B int )  (int) {
-    for i,row := range A {
-        j := binarySearch(row,B)
-        if j != -1 {
-            return (i+1)*1009 + (j+1)
+            i++
         }
     }
     return -1
